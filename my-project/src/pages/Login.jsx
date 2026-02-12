@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Logging in...', { email, password });
+    localStorage.setItem('user_email', email);
+    navigate('/dashboard');
   };
 
   return (
@@ -90,7 +93,7 @@ const Login = () => {
             </div>
           </div>
         </div>
-        
+
         <p className="mt-6 text-center text-sm text-gray-600">
           Not a member?{' '}
           <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">Start a 14-day free trial</a>
