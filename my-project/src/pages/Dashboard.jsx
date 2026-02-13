@@ -37,7 +37,7 @@ const Dashboard = () => {
         // Fetch chat history from backend
         const loadHistory = async () => {
             try {
-                const res = await fetch(`http://127.0.0.1:8000/chat/history?user_email=${encodeURIComponent(userEmail)}`);
+                const res = await fetch(`${import.meta.env.VITE_API_BASE}/chat/history?user_email=${encodeURIComponent(userEmail)}`);
                 if (res.ok) {
                     const data = await res.json();
                     if (data.length > 0) {
@@ -125,7 +125,7 @@ const Dashboard = () => {
         }
         // Clear chat history in backend
         try {
-            await fetch(`http://127.0.0.1:8000/chat/history?user_email=${encodeURIComponent(userEmail)}`, { method: 'DELETE' });
+            await fetch(`${import.meta.env.VITE_API_BASE}/chat/history?user_email=${encodeURIComponent(userEmail)}`, { method: 'DELETE' });
         } catch (err) { /* ignore */ }
         setActiveSessionId(null);
         setChatHistory([
@@ -220,7 +220,7 @@ const Dashboard = () => {
         }
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/chat?user_email=${encodeURIComponent(userEmail)}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE}/chat?user_email=${encodeURIComponent(userEmail)}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
